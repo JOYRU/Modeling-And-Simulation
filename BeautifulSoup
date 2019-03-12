@@ -1,0 +1,15 @@
+import requests
+import time
+from bs4 import BeautifulSoup
+
+
+url = 'http://www.ru.ac.bd/'
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser") ; 
+
+x = soup.find_all('a')
+
+for i in x:
+	print(i.get('href'))
+
+
