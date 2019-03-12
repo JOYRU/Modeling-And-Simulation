@@ -1,0 +1,58 @@
+/*#include<stdio.h>
+#include<iostream>*/
+#include<bits/stdc++.h>
+#include<conio.h>
+#include<math.h>
+
+using namespace std;
+
+ main(){
+
+    
+    ifstream in("input.txt") ; 
+    
+	int i , fighter_velocity , time , xb[1000] , yb[1000]; 
+     float xf[1000] , yf[1000],distance,sqx,sqy,sin,cos , range;
+     
+     xf[0]=0;yf[0]=50;  //initial position of fighter
+     
+     
+     //printf("Velocity of Fighter: \n") ; 
+     in>>fighter_velocity ; 
+     //printf("Range of Fighter: \n") ; 
+     in>>range ; 
+     //printf("Time of tries to Destroy Bomber \n") ;
+	 in>>time ;  
+	 
+     //bomber x index input
+     for(i = 0 ; i <=time ; i++){
+         in>>xb[i] ; 
+     }
+     
+      //bomber y index input
+        for(i = 0 ; i <=time ; i++){
+         in>>yb[i] ; 
+     }
+     
+   for(i=0;i<=time;i++){
+       sqy=(yb[i]-yf[i])*(yb[i]-yf[i]);
+       sqx=(xb[i]-xf[i])*(xb[i]-xf[i]);
+       distance=sqrt(sqx+sqy);
+       printf("Distance between Fighter and Bomber : %5f\n",distance);
+       if(distance<=range){
+            printf("Destroyed at (%d,%d) of Bomber & (%5f,%5f)of Fighter.\n",xb[i],yb[i],xf[i],yf[i]);
+            break;
+      }
+      sin=(yb[i]-yf[i])/distance;
+      cos=(xb[i]-xf[i])/distance;
+      xf[i+1]=xf[i]+fighter_velocity*cos;
+      yf[i+1]=yf[i]+fighter_velocity*sin;
+   }
+   if(i>time)
+      printf("Bomber escaped!!\n");
+      
+      
+   getch();
+   
+}
+
