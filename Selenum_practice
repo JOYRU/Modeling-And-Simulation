@@ -1,0 +1,28 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+
+driver = webdriver.Chrome()
+
+driver.get("http://www.google.com")
+
+
+search_field = driver.find_element_by_name("q")
+
+
+search_field.send_keys("Selenium WebDriver Interview questions")
+search_field.submit()
+
+lists= driver.find_elements_by_class_name("r")
+
+
+print ("Found " + str(len(lists)) + " searches:")
+
+i=0
+for listitem in lists:
+   print (listitem.get_attribute("innerHTML"))
+   i=i+1
+   if(i>10):
+      break
+driver.quit()
